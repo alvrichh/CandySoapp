@@ -1,0 +1,29 @@
+#toggleContrastButton {
+    background-color: rgb(255, 174, 0);
+    position: fixed;
+    right: 0;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease; 
+	z-index: 3;
+}
+
+#toggleContrastButton:hover {
+    background-color: #ffcc00; 
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); 
+}
+#lineizq, #linedrch{
+    transition: none;
+    border-style: none;
+
+}
+.options {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+

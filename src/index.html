@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta name="author" content="Alvaro Rodriguez Molina">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+  <link rel="stylesheet" href="main.css">
+  <title>CandySoapp - Jabones Artesanales</title>
+</head>
+
+<body>
+
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container-fluid justify-content-space-between">
+        <!-- Logo a la izquierda -->
+        <button class="btn btn-primary" id="lineizq" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
+          aria-label="Menú de navegación">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+          </svg>
+        </button>
+
+        <a href="index.html">
+          <img id="svg" src="images/letrero.svg" alt="Logo de CandySoapp" class="logo-img">
+        </a>
+        <button class="btn btn-primary navbar-toggler" id="linedrch" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+          aria-label="Alternar navegación">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+          </svg> </button>
+
+        <!-- Elementos a la derecha, alineados horizontalmente -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav" role="menubar">
+            <li class="nav-item" role="menuitem">
+              <a class="nav-link" href="graph.html">
+                <i class="bi bi-bar-chart"></i>
+                <span>Gráfica</span>
+              </a>
+            </li>
+            <li class="nav-item" id="cart" role="menuitem">
+              <a class="nav-link" href="#" aria-label="Carrito">
+                <i class="bi bi-cart"></i>
+                <span>Carrito</span>
+                <span id="fillCountBadge" class="badge bg-danger" aria-hidden="true"></span>
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a class="nav-link" href="#" aria-label="Perfil">
+                <i class="bi bi-person"></i>
+                <span>Perfil</span>
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" class="nav-link" id="notificaciones" aria-label="Notificaciones">
+                <div class="animate__animated" id="campana">
+                  <i class="bi bi-bell"></i>
+                </div>
+                <span>Notificaciones</span>
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="register.html" class="btn btn-outline-light" aria-label="Iniciar Sesión">
+                <i class="bi bi-box-arrow-in-right"></i>Iniciar Sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <button id="toggleContrastButton" aria-label="Cambiar Modo de Contraste" title="Cambiar Modo de Contraste">
+    <span class="bi-moon" id="contrastIcon"></span>
+  </button>
+
+  <div id="video">
+    <video autoplay muted loop id="myVideo">
+      <source src="images/MP4/candysoapp.mp4" type="video/mp4">
+    </video>
+    <div class="close">
+      <button type="button" id="close" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Cerrar video" aria-label="Cerrar video">
+        <i class="bi bi-x"></i>
+      </button>
+
+    </div>
+    <div class="content">
+      <h1>Jabones de primera calidad</h1>
+      <p>Tiene la oportunidad de obtener un 20% de descuento en su primera compra. ¡Disfrute de nuestros productos!</p>
+      <button id="myBtn" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Pausar/Reproducir">Pause
+      </button>
+    </div>
+  </div>
+
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions">
+      <div class="offcanvas-header">
+        <img src="images/logotipo.png" alt="CandySoapp" id="logotipo">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <!-- Desplegables con iconos -->
+        <div class="accordion" id="customizeAccordion">
+          <!-- Personaliza tu jabón -->
+          <div class="accordion-item">
+            <h2 class="options" id="customizeHeader">
+              <button class="accordion-button text-dark" type="button" data-bs-toggle="collapse"
+                data-bs-target="#customizeCollapse" aria-expanded="true" aria-controls="customizeCollapse" >
+                <i class="bi bi-gear"> Personaliza tu jabón</i>
+              </button>
+            </h2>
+            <div id="customizeCollapse" class="accordion-collapse collapse show" aria-labelledby="customizeHeader"
+              data-bs-parent="#customizeAccordion">
+              <div class="accordion-body">
+                <!-- Contenido personaliza tu jabón -->
+                <ul>
+                  <li><a href="#">Escoge ingredientes.</a></li>
+                  <li><a href="#">Elige fragancias.</a></li>
+                  <li><a href="#">Decide la forma y color.</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Realiza un estudio -->
+          <div class="accordion-item">
+            <h2 class="options" id="studyHeader">
+              <button class="accordion-button text-dark collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#studyCollapse" aria-expanded="false" aria-controls="studyCollapse">
+                <i class="bi bi-journal-text"> Realiza un estudio</i> 
+              </button>
+            </h2>
+            <div id="studyCollapse" class="accordion-collapse collapse" aria-labelledby="studyHeader"
+              data-bs-parent="#customizeAccordion">
+              <div class="accordion-body">
+                <!-- Contenido realiza un estudio -->
+                <ul>
+                  <li><a href="#">Encuentra el jabón ideal para tu tipo de piel.</a></li>
+                  <li><a href="#">Obtén recomendaciones personalizadas.</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Tipo de piel -->
+          <div class="accordion-item">
+            <h2 class="options" id="skinTypeHeader">
+              <button class="accordion-button text-dark collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#skinTypeCollapse" aria-expanded="false" aria-controls="skinTypeCollapse">
+                <i class="bi bi-person"> Tipo de piel</i>
+              </button>
+            </h2>
+            <div id="skinTypeCollapse" class="accordion-collapse collapse" aria-labelledby="skinTypeHeader"
+              data-bs-parent="#customizeAccordion">
+              <div class="accordion-body">
+                <!-- Contenido tipo de piel -->
+                <ul>
+                  <li><a href="#">Piel seca.</a></li>
+                  <li><a href="#">Piel grasa.</a></li>
+                  <li><a href="#">Piel sensible.</a></li>
+                  <li><a href="#">Piel mixta.</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- Toast para notificaciones -->
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+
+    <div class="toast-container end-0 p-2 position-fixed">
+      <!-- Then put toasts within -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="images/letter.png" class="rounded me-2" alt="CS" width="40" height="40">
+          <strong class="me-auto">Hola!😄</strong>
+          <small class="text-body-secondary">just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          No tienes ninguna notificación.
+        </div>
+      </div>
+      <!--
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="images/letter.png" class="rounded me-2" alt="CS" width="15" height="15">
+          <strong class="me-auto">Bootstrap</strong>
+          <small class="text-body-secondary">2 seconds ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Heads up, toasts will stack automatically
+        </div>
+      </div>-->
+    </div>
+  </div>
+
+
+
+
+  <!-- Migas de pan-->
+  <div class="container mt-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+      </ol>
+    </nav>
+    <div class="row">
+      <!-- Imagen individual a la izquierda -->
+      <div class="col-md-3 d-none d-md-block" role="banner">
+        <video autoplay loop muted playsinline class="img-fluid"
+          aria-label="Chica haciendo pompas de jabón, oferta del 20 por ciento en tu primer pedido de la tienda.">
+          <source src="images/MP4/banner2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <!-- carrousel -->
+
+      <div class="col-md-6">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
+          aria-label="Productos destacados">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="JAvon"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+              <img src="images/products/producto6.jpg" class="d-block w-100" alt="Primera imagen del carrousel, Jabón de lavanda">
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Jabón de lavanda</h2>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+              <img src="images/products/producto2.jpeg" class="d-block w-100" alt="Segunda imagen del carrousel, Jabón de té manzanilla">
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Jabón de té manzanilla</h2>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+              <img src="images/products/producto1.jpeg" class="d-block w-100" alt="Tercera imagen del carrousel, Jabón de coco">
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Jabón de coco</h2>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev" aria-label="Anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next" aria-label="Siguiente">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="text-center">
+          <h1 class="display-4"> Jabones Artesanales </h1>
+          <p> Descubre la magia de la artesanía en cada barra de CandySoapp, ofreciendo cuidadosamente jabones adaptados
+            a
+            todo tipo de pieles sensibles.</p>
+        </div>
+      </div>
+      <!-- Imagen individual a la derecha -->
+      <div class="col-md-3 d-none d-md-block" role="banner">
+        <video autoplay loop muted playsinline class="img-fluid">
+          <source src="images/MP4/banner2.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div class="plantas container">
+    <fieldset>
+      <label for="fiddleLeaf" style="--_img: url(https://assets.codepen.io/2585/fiddle-leaf.jpeg)">
+        <input type="radio" id="fiddleLeaf" name="images" value="Fiddle Leaf" aria-label="Fiddle Leaf">
+        <span style="display: none;">Fiddle Leaf</span>
+      </label>
+
+      <label for="pinkPrincess" style="--_img: url(https://assets.codepen.io/2585/pink-princess.jpeg)">
+        <input type="radio" id="pinkPrincess" name="images" value="Pink Princess" aria-label="Pink Princess">
+        <span style="display: none;">Pink Princess</span>
+      </label>
+
+      <label for="monstera" style="--_img: url(https://assets.codepen.io/2585/kara-eads-zcVArTF8Frs-unsplash.jpg)">
+        <input type="radio" id="monstera" name="images" value="Monstera" checked aria-label="Monstera">
+        <span style="display: none;">Monstera</span>
+      </label>
+
+      <label for="pothos" style="--_img: url(https://assets.codepen.io/2585/pothos.jpeg)">
+        <input type="radio" id="pothos" name="images" value="Pothos" aria-label="Pothos">
+        <span style="display: none;">Pothos</span>
+      </label>
+
+      <label for="rubberTree" style="--_img: url(https://assets.codepen.io/2585/rubber-tree.webp)">
+        <input type="radio" id="rubberTree" name="images" value="Rubber Tree" aria-label="Rubber Tree">
+        <span style="display: none;">Rubber Tree</span>
+      </label>
+
+      <label for="secondFiddleLeaf" style="--_img: url(https://assets.codeopen.io/2585/fiddle-leaf.jpeg)">
+        <input type="radio" id="secondFiddleLeaf" name="images" value="Fiddle Leaf" aria-label="Second Fiddle Leaf">
+        <span style="display: none;"> Second Fiddle Leaf</span>
+      </label>
+    </fieldset>
+  </div>
+
+  <!-- Productos -->
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Cartas de Productos -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card">
+          <img src="images/products/producto6.jpg" class="card-img-top" alt="Jabón de Lavanda">
+          <div class="card-body">
+            <h2 class="card-title">Jabón de Lavanda</h2>
+            <p class="card-text">Jabón suave con aroma a lavanda.</p>
+            <p class="card-text">Precio: $5.99</p>
+            <button class="btn btn-light btn-heart" aria-label="Like">
+              <i id="1" class="bi bi-heart-fill"></i>
+            </button>
+            <button class="btn btn-success btn-buy" aria-label="Buy">
+              <i class="bi bi-cart"></i> Comprar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card">
+          <img src="images/products/producto5.jpg" class="card-img-top" alt="Jabón de Rosa Mosqueta">
+          <div class="card-body">
+            <h2 class="card-title">Jabón de Rosa Mosqueta</h2>
+            <p class="card-text">Jabón nutritivo con aceite de rosa mosqueta.</p>
+            <p class="card-text">Precio: $7.99</p>
+            <button class="btn btn-light btn-heart" aria-label="Like">
+              <i id="2" class="bi bi-heart-fill"></i>
+            </button>
+            <button class="btn btn-success btn-buy" aria-label="Buy">
+              <i class="bi bi-cart"></i> Comprar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card">
+          <img src="images/products/producto4.jpeg" class="card-img-top" alt="Jabón de Aloe Vera">
+          <div class="card-body">
+            <h2 class="card-title">Jabón de Aloe Vera</h2>
+            <p class="card-text">Jabón refrescante con extracto de aloe vera.</p>
+            <p class="card-text">Precio: $6.99</p>
+            <button class="btn btn-light btn-heart" aria-label="Like">
+              <i id='3' class="bi bi-heart-fill"></i>
+            </button>
+            <button class="btn btn-success btn-buy" aria-label="Buy">
+              <i class="bi bi-cart"></i> Comprar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card">
+          <img src="images/products/producto1.jpeg" class="card-img-top" alt="Jabón de Coco">
+          <div class="card-body">
+            <h2 class="card-title">Jabón de Coco</h2>
+            <p class="card-text">Jabón exfoliante con aroma a coco.</p>
+            <p class="card-text">Precio: $8.99</p>
+            <div class="card-control">
+            <button class="btn btn-light btn-heart" aria-label="Like">
+              <i id="4" class="bi bi-heart-fill"></i>
+            </button>
+            <button class="btn btn-success btn-buy" aria-label="Buy">
+              <i class="bi bi-cart"></i> Comprar
+            </button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4">
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <footer>
+    <ul class="wrapper">
+      <li class="ss facebook">
+        <a href="#" target="_blank">
+          <span class="tooltip">Facebook</span>
+          <span><i class="bi bi-facebook"></i></span>
+        </a>
+      </li>
+      <li class="ss twitter">
+        <a href="#" target="_blank">
+          <span class="tooltip">Twitter</span>
+          <span><i class="bi bi-twitter"></i></span>
+        </a>
+      </li>
+      <li class="ss instagram">
+        <a href="#" target=" _blank">
+          <span class="tooltip">Instagram</span>
+          <span><i class="bi bi-instagram"></i></span>
+        </a>
+      </li>
+      <li class="ss github">
+        <a href="https://github.com/alvrichh" target="_blank">
+          <span class="tooltip">Github</span>
+          <span><i class="bi bi-github"></i></span>
+        </a>
+      </li>
+      <li class="ss youtube">
+        <a href="#" target="_blank">
+          <span class="tooltip">Youtube</span>
+          <span><i class="bi bi-youtube"></i></span>
+        </a>
+      </li>
+    </ul>
+    <section class="info text-center">
+      <div class="container">
+        <div class="row">
+          <!-- Acerca de Nosotros -->
+          <div class="col-lg-4">
+            
+              <h2>Acerca de Nosotros </h2>
+              <abbr title="Seguiremos mejorando. ❤">👨‍👩‍👦‍👦</abbr>
+            <p class="lead">Un proyecto de diseño de aplicaciones web. Instituto IES ALIXAR 2024 <br><em>Autor: Ávaro
+                Rodríguez Molina</em></p>
+          </div>
+          <!-- Suscripción a la Newsletter -->
+          <div class="col-lg-4">
+            <h2>Suscríbete a nuestra Newsletter!</h2>
+            <!-- <form action="#" method="post" class="needs-validation" novalidate>-->
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Tu correo electrónico"
+                aria-label="Tu correo electrónico" required>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="newsletter" data-bs-toggle="modal"
+                  data-bs-target="#subscribeModal">Suscríbete</button>
+              </div>
+            </div>
+            <div class="invalid-feedback">
+              Por favor, ingresa una dirección de correo electrónico válida.
+            </div>
+            <!--  </form>-->
+            <p class="lead">Deja tu correo para estar al tanto de nuestras actualizaciones.</p>
+          </div>
+
+          <!-- Modal de Suscripción -->
+          <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="subscribeModalLabel">¡Enhorabuena!🎉</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Te has suscrito a nuestra newsletter. ¡Gracias por unirte! 😊
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- © Copyleft -->
+          <div class="col-lg-4">
+            <h2>© Copyleft</h2>
+            <p>Todas las imágenes han sido sacadas de
+              <a href="https://www.pexels.com/es-es/buscar/jabones/" class="lead"><b>Pexels</b></a>
+              y
+              <a href="https://www.freepik.es" class="lead"><b>Freepick</b></a>
+            </p>
+            <a href="https://creativecommons.org/public-domain/cc0/"><img src="images/CC.png" alt="CC"
+                class="img-fluid"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js "></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>-->
+</body>
+
+</html>

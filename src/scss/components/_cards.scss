@@ -1,0 +1,110 @@
+/*.card{
+    min-width: 253.4px;
+}*/
+.bi-heart-fill {
+    color: grey;
+
+}
+
+.fill {
+    color: #dc1818;
+    animation: like 1s forwards;
+}
+
+@keyframes like {
+    0% {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 1;
+    }
+}
+
+#cart {
+    position: relative;
+}
+
+#fillCountBadge {
+    font-size: 9px;
+    border-radius: 100%;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    z-index: 1;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.25rem;
+    /* Ajusta el tamaño de la fuente según sea necesario */
+    font-weight: normal;
+    /* Puedes ajustar el peso de la fuente */
+    /* Otros estilos de texto según sea necesario */
+}
+.card{
+    min-height: 470px ;
+}
+
+.card:hover:before,
+.card:hover:after {
+    animation: none;
+}
+
+
+.card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+
+    100% {
+        --rotate: 360deg;
+    }
+}
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+:root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+}

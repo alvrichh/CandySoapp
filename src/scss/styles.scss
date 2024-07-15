@@ -1,0 +1,16 @@
+// Import all of Bootstrap's CSS
+// Import all of Bootstrap's CSS
+@import 'base/variables';
+@import 'layout/contrast';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'components/fieldset';
+@import 'components/cards';
+@import 'components/video';
+@import 'components/buttons';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+//@import 'views/register';
+//@import 'views/catalog';
+//@import 'views/video';
