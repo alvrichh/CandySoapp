@@ -1,5 +1,7 @@
 # CandySoapp
 Web: https://candysoapp.vercel.app
+![image](https://github.com/user-attachments/assets/f742e409-36b2-4b14-b202-1b44c67811aa)
+
 # Configuración de Proyecto Webpack con Bootstrap
 
 ## Requisitos Previos
